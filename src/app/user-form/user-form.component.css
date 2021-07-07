@@ -1,0 +1,141 @@
+button {
+  font-size: 18px;
+  border-radius: 5px;
+  padding: 8px 6.5px 8px 6.5px;
+  box-shadow: none;
+  border-color: transparent;
+  margin: 5px;
+}
+
+.input_field_heading {
+    display: inline-flex;
+    height: 30px;
+  }
+
+  .warning_text {
+    display: inline-flex;
+    height: 30px;
+    color: crimson;
+    margin-left: 10px;
+  }
+  
+  .input_fields {
+    padding: 10px;
+    margin: 5px;
+    width: 400px;
+    border-radius: 8px;
+    border: 2px solid #E0E0E0;
+  }
+
+  .input_fields:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: dodgerblue;
+  }
+
+  .input_fields.ng-touched.ng-invalid {
+    border-color: crimson;
+  }
+
+  .input_fields.ng-touched.ng-valid {
+    border-color: lightseagreen;
+  }
+  
+  .input_field_divs {
+    margin: 0px 15px 15px 15px;
+  }
+  
+  .asterisk_color {
+    color: red;
+  }
+  
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: '';
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+  }
+  
+  input:checked + .slider {
+    background-color: crimson;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  #bottom {
+    margin-top: 50px;
+    justify-content: right;
+    margin-left: 50px;
+  }
+  
+  #cancel {
+    background-color: #f8f8f8;
+  }
+  
+  #cancel:hover {
+    border: 1px solid #dadce0;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+  }
+  
+  #confirm {
+    background-color: #488fed;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+    padding: 8px 6.5px 8px 6.5px;
+    box-shadow: none;
+    border-color: transparent;
+    margin: 5px;
+  }
+
+  #confirm:disabled {
+    background-color: #488fed94;
+  }
+  
+  #confirm[disabled]:hover {
+    background-color: #4286f4a2;
+    box-shadow: 0 0 3px #2c7eea;
+  }
+  
+  #confirm:hover {
+    background-color: #4285f4;
+    box-shadow: 0 0 3px #2c7eea;
+  }

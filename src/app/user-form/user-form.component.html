@@ -1,0 +1,314 @@
+<!---
+<form [formGroup]="user_form" >
+<div>
+    <div style="display: inline-flex;">
+        <div class="input_field_divs">
+            <div class="input_field_heading">
+                <h6 class="asterisk_color">*</h6>
+                <h4>Full Name</h4>
+            </div>
+            <div>
+                <input formControlName = "fullname" required minlength="2" maxlength="30" id = "full_name" type = "text" class = "input_fields" (change) = "onChange(fullname)">
+            </div>
+        </div>
+        <div class="input_field_divs">
+            <div class="input_field_heading">
+                <h6 class="asterisk_color">*</h6>
+                <h4>Username</h4>
+            </div>
+            <div>
+                <input formControlName = "username" required minlength="4" maxlength="30" id = "username" type = "text" class = "input_fields" (change) = "log(username)">
+            </div>
+        </div>
+        </div>
+    </div>
+    <div>
+        <div style="display: inline-flex;">
+        <div class="input_field_divs">
+            <div class="input_field_heading">
+            <h6 class="asterisk_color">*</h6>
+            <h4>Password</h4>
+            </div>
+            <div>
+                <input formControlName = "password" required minlength="6" maxlength="30" id = "password" type = "password" class = "input_fields">
+            </div>
+        </div>
+        <div class="input_field_divs">
+            <div class="input_field_heading">
+                <h6 class="asterisk_color">*</h6>
+                <h4>Phone Number</h4>
+            </div>
+            <div>
+                <input formControlName = "phone_number" required minlength="7" maxlength="15" id = "phone_number" type = "text" class = "input_fields">
+            </div>
+        </div>
+        </div>
+    </div>
+    <div>
+        <div style="display: inline-flex;">
+        <div class="input_field_divs">
+            <div class="input_field_heading">
+            <h4>Send Email</h4>
+            </div>
+            <div style="padding-right: 374px; margin-top: 7px">
+            <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+            </label>
+            </div>
+        </div>
+        <div class="input_field_divs">
+            <div class="input_field_heading">
+            <h6 class="asterisk_color">*</h6>
+            <h4>Email</h4>
+            </div>
+            <div>
+            <input formControlName = "email" #email = "ngModel" required minlength = "7" maxlength = "32" id = "email" type = "email" class = "input_fields">
+            </div>
+        </div>
+        </div>
+    </div>
+    <div>
+        <div style="display: inline-flex;">
+        <div class="input_field_divs">
+            <div class="input_field_heading">
+            <h4>Address</h4>
+            </div>
+            <div>
+            <input formControlName = "address" id = "address" type = "text" class = "input_fields">
+            </div>
+        </div>
+        <div class="input_field_divs">
+            <div class="input_field_heading">
+            <h4>Contacts</h4>
+            </div>
+            <div>
+            <input formControlName = "contact" id = "contact" type = "text" class = "input_fields">
+            </div>
+        </div>
+        </div>
+    </div>
+    <div>
+        <div style="display: inline-flex;">
+        <div class="input_field_divs">
+            <div class="input_field_heading">
+            <h6 class="asterisk_color">*</h6>
+            <h4>validPeriod</h4>
+            </div>
+            <div>
+            <input formControlName = "valid_period" required id = "valid_period" type = "date" class = "input_fields">
+            </div>
+        </div>
+        <div class="input_field_divs">
+            <div class="input_field_heading">
+            <h6 class="asterisk_color">*</h6>
+            <h4>AppId</h4>
+            </div>
+            <div>
+            <input formControlName = "app_id" required minlength="2" maxlength="30" id = "app_id" type = "text" class = "input_fields" (change) = "onChange(app_id)">
+            </div>
+        </div>
+        </div>
+    </div>
+    <div>
+        <div style="display: inline-flex;">
+        <div class="input_field_divs">
+            <div class="input_field_heading">
+            <h6 class="asterisk_color">*</h6>
+            <h4>Capacity(M)</h4>
+            </div>
+            <div>
+                <input formControlName = "capacity" required minlength="1" maxlength="4" id = "capacity" type = "number" class = "input_fields">
+            </div>
+        </div>
+        <div class="input_field_divs">
+            <div class="input_field_heading">
+            <h4>Postscript</h4>
+            </div>
+            <div>
+            <input formControlName = "postscript" id = "postscript" type = "text" class = "input_fields">
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+<div>
+    <h5 style="height: 25px; margin: 15px 0px 7px 0px">Whether to authorize the background</h5>
+    <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+    </label>
+    <div id="bottom">
+        <button id = "cancel">Cancel</button>
+        <input disabled =""  type = "submit" id = "confirm" placeholder="Confirm"/>
+    </div>
+</div>
+</form>
+--->
+
+<form #login = "ngForm" (ngSubmit) = "submit(login)">
+    <div>
+        <div style="display: inline-flex;">
+            <div class="input_field_divs">
+                <div class="input_field_heading">
+                    <h6 class="asterisk_color">*</h6>
+                    <h4>Full Name</h4>
+                    <div *ngIf = "fullname.touched && fullname.invalid">
+                        <h5 class = "warning_text" *ngIf = "fullname.errors.required">This is a required field!</h5>
+                        <h5 class = "warning_text" *ngIf = "fullname.errors.minlength">fullname has to be longer!</h5>
+                    </div>
+                    <h5 class = "warning_text">{{fullname_error}}</h5>
+                </div>
+                <div>
+                    <input ngModel #fullname = "ngModel" name = "fullname" required minlength="2" maxlength="30" id = "full_name" type = "text" class = "input_fields" (change) = "onChange(fullname, login)">
+                </div>
+            </div>
+            <div class="input_field_divs">
+                <div class="input_field_heading">
+                    <h6 class="asterisk_color">*</h6>
+                    <h4>Username</h4>
+                    <div *ngIf = "username.touched && username.invalid">
+                        <h5 class = "warning_text" *ngIf = "username.errors.required">This is a required field!</h5>
+                        <h5 class = "warning_text" *ngIf = "username.errors.minlength">Username has to be longer!</h5>
+                    </div>
+                </div>
+                <div>
+                    <input ngModel name = "username" #username = "ngModel" required minlength="4" maxlength="30" id = "username" type = "text" class = "input_fields" (change) = "onChange(username, login)">
+                </div>
+            </div>
+            </div>
+        </div>
+        <div>
+            <div style="display: inline-flex;">
+            <div class="input_field_divs">
+                <div class="input_field_heading">
+                <h6 class="asterisk_color">*</h6>
+                <h4>Password</h4>
+                <div *ngIf = "password.touched && password.invalid">
+                    <h5 class = "warning_text" *ngIf = "password.errors.required">This is a required field!</h5>
+                    <h5 class = "warning_text" *ngIf = "password.errors.minlength">Password has to be longer!</h5>
+                </div>
+                </div>
+                <div>
+                    <input ngModel name = "password" #password = "ngModel" required minlength="6" maxlength="30" id = "password" type = "password" class = "input_fields"  (change) = "onChange(password, login)">
+                </div>
+            </div>
+            <div class="input_field_divs">
+                <div class="input_field_heading">
+                    <h6 class="asterisk_color">*</h6>
+                    <h4>Phone Number</h4>
+                    <div>
+                        <h5 class = "warning_text" *ngIf = "phone_number.touched && phone_number.invalid">Enter a valid phone number!</h5>
+                    </div>
+                </div>
+                <div>
+                    <input ngModel name = "phone_number" #phone_number = "ngModel" required minlength="7" maxlength="15" id = "phone_number" type = "text" class = "input_fields"  (change) = "onChange(username, login)">
+                </div>
+            </div>
+            </div>
+        </div>
+        <div>
+            <div style="display: inline-flex;">
+            <div class="input_field_divs">
+                <div class="input_field_heading">
+                <h4>Send Email</h4>
+                </div>
+                <div style="padding-right: 355px; margin-top: 7px;">
+                    <label class="switch">
+                    <input ngModel name = "send_email" #send_email = "ngModel" type="checkbox">
+                <span class="slider round"></span>
+                </label>
+                </div>
+            </div>
+            <div class="input_field_divs">
+                <div class="input_field_heading">
+                <h6 class="asterisk_color">*</h6>
+                <h4>Email</h4>
+                <h5 class = "warning_text" *ngIf = "email.touched && email.invalid">Enter a valid email address!</h5>
+                </div>
+                <div>
+                <input ngModel name = "email" #email = "ngModel" required minlength = "7" maxlength = "32" id = "email" type = "email" class = "input_fields" (change) = "onChange(email, login)">
+                </div>
+            </div>
+            </div>
+        </div>
+        <div>
+            <div style="display: inline-flex;">
+            <div class="input_field_divs">
+                <div class="input_field_heading">
+                <h4>Address</h4>
+                </div>
+                <div>
+                <input ngModel name = "address" #address = "ngModel" id = "address" type = "text" class = "input_fields">
+                </div>
+            </div>
+            <div class="input_field_divs">
+                <div class="input_field_heading">
+                <h4>Contacts</h4>
+                </div>
+                <div>
+                <input ngModel name = "contacts" #contacts = "ngModel" id = "contacts" type = "number" class = "input_fields">
+                </div>
+            </div>
+            </div>
+        </div>
+        <div>
+            <div style="display: inline-flex;">
+            <div class="input_field_divs">
+                <div class="input_field_heading">
+                <h6 class="asterisk_color">*</h6>
+                <h4>validPeriod</h4>
+                <h5 class = "warning_text" *ngIf = "valid_period.touched && valid_period.invalid">This is a required field!</h5>
+                </div>
+                <div>
+                <input ngModel name = "valid_period" #valid_period = "ngModel" required id = "valid_period" type = "date" class = "input_fields"  (change) = "onChange(valid_period, login)">
+                </div>
+            </div>
+            <div class="input_field_divs">
+                <div class="input_field_heading">
+                <h6 class="asterisk_color">*</h6>
+                <h4>AppId</h4>
+                <h5 class = "warning_text">{{app_id_error}}</h5>
+                </div>
+                <div>
+                <input ngModel name = "app_id" #app_id = "ngModel" required minlength="2" maxlength="30" id = "app_id" type = "text" class = "input_fields" (change) = "onChange(app_id, login)">
+                </div>
+            </div>
+            </div>
+        </div>
+        <div>
+            <div style="display: inline-flex;">
+            <div class="input_field_divs">
+                <div class="input_field_heading">
+                <h6 class="asterisk_color">*</h6>
+                <h4>Capacity(M)</h4>
+                <div *ngIf = "capacity.touched && capacity.invalid">
+                    <h5 *ngIf = "capacity.errors.required" class = "warning_text">Please enter a valid value!</h5>
+                </div>
+                </div>
+                <div>
+                    <input ngModel name = "capacity" #capacity = "ngModel" required minlength="1" maxlength="4" id = "capacity" type = "number" min = "0" class = "input_fields" (change) = "onChange(capacity, login)">
+                </div>
+            </div>
+            <div class="input_field_divs">
+                <div class="input_field_heading">
+                <h4>Postscript</h4>
+                </div>
+                <div>
+                <input ngModel name = "postscript" #postscript = "ngModel" id = "postscript" type = "text" class = "input_fields" (change) = "onChange(capacity, login)">
+                </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h5 style="height: 25px; margin: 15px 0px 7px 0px">Whether to authorize the background</h5>
+            <label class="switch">
+                <input ngModel name = "background" #background = "ngModel" type="checkbox">
+                <span class="slider round"></span>
+            </label>
+            <div id="bottom">
+                <button id = "cancel" (click) = "resetForm(login)">Cancel</button>
+                <input type = "submit" id = "confirm" placeholder="Confirm" [disabled] = "active_error"/>
+            </div>
+        </div>
+</form>
