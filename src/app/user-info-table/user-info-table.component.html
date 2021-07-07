@@ -10,7 +10,6 @@
         <th scope="col">Email</th>
         <th scope="col">Address</th>
         <th scope="col">Contacts</th>
-        <th scope="col">Password</th>
         <th scope="col">Valid till</th>
         <th scope="col">App ID</th>
         <th scope="col">Capacity</th>
@@ -20,10 +19,20 @@
     </thead>
     <tbody>
       <tr *ngFor = "let value of tableValues">
-        <th scope="row">1</th>
-        <td>a</td>
-        <td>b</td>
-        
+        <th scope="row">{{tableValues.indexOf(value)}}</th>
+        <td>{{value.fullname}}</td>
+        <td>{{value.username}}</td>
+        <td>{{value.password}}</td>
+        <td>{{value.phone_number}}</td>
+        <td>{{value.send_email?true:false}}</td>
+        <td>{{value.email}}</td>
+        <td>{{value.address===""?"-":value.address}}</td>
+        <td>{{value.contacts}}</td>
+        <td>{{value.valid_period}}</td>
+        <td>{{value.app_id}}</td>
+        <td>{{value.capacity}}</td>
+        <td>{{value.postscript}}</td>
+        <td>{{value.background?true:false}}</td>
       </tr>
     </tbody>
   </table>

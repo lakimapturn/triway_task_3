@@ -1,21 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { UserDataService } from '../user-data.service';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Subscription } from 'rxjs/internal/Subscription';
+import { UserDataService, UserInfo } from '../user-data.service';
 
 @Component({
   selector: 'app-user-info-table',
   templateUrl: './user-info-table.component.html',
   styleUrls: ['./user-info-table.component.css'],
-  providers: [UserDataService]
 })
-export class UserInfoTableComponent implements OnInit {
-  tableValues: Array<Object> = [];
-  
+export class UserInfoTableComponent implements OnInit, OnChanges {
+  tableValues: UserInfo[];
+  subscription: Subscription;
+
   constructor(private userDService: UserDataService) {
-    this.tableValues = userDService.getAllUserInfo();
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.userDService.userData.subscribe(tableValues => this.tableValues = tableValues)
   }
 
-  ngOnInit(): void {
-
+  ngOnInit(){
+    this.subscription = this.userDService.userData.subscribe(tableValues => this.tableValues = tableValues)
+    console.log(this.tableValues);
   }
-
 }

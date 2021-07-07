@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserDataService } from '../user-data.service';
+import { UserInfoTableComponent } from '../user-info-table/user-info-table.component';
 
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.css'],
-  providers: [UserDataService]
 })
 
 export class UserFormComponent {
@@ -42,7 +42,9 @@ export class UserFormComponent {
   submit(login: any) {
     if(this.active_error === false)
     {
+
       this.userDService.addUserInfo(login.value);
+      //this.userInfo.
       this.resetForm(login);
     }
   }
