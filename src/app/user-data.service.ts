@@ -8,9 +8,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class UserDataService {
   private userDataSource = new BehaviorSubject<UserInfo[]>([]);
   userData = this.userDataSource.asObservable();
+  arr: Array<UserInfo> = [];
+  
   
   constructor() {
-    console.log(localStorage.getItem('userInfo'));
+    this.arr = JSON.parse(localStorage.getItem('userInfo'));
   }
 
   getAllUserInfo() {
@@ -22,13 +24,9 @@ export class UserDataService {
   }
 
   addUserInfo(info: UserInfo) {
-    const arr = [];
-    arr.push(info)
-    console.log(arr);
-
-    this.userDataSource.next(arr);
-    console.log(this.userDataSource)
-    localStorage.setItem("userInfo", JSON.stringify(arr))
+    this.arr.push(info)
+    this.userDataSource.next(this.arr);
+    localStorage.setItem("userInfo", JSON.stringify(this.arr))
   }
 }
 

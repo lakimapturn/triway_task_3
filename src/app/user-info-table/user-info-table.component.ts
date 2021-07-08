@@ -1,5 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Subscription } from 'rxjs/internal/Subscription';
+import { Component, OnInit } from '@angular/core';
 import { UserDataService, UserInfo } from '../user-data.service';
 
 @Component({
@@ -7,18 +6,14 @@ import { UserDataService, UserInfo } from '../user-data.service';
   templateUrl: './user-info-table.component.html',
   styleUrls: ['./user-info-table.component.css'],
 })
-export class UserInfoTableComponent implements OnInit, OnChanges {
+export class UserInfoTableComponent implements OnInit {
   tableValues: UserInfo[];
-  subscription: Subscription;
 
   constructor(private userDService: UserDataService) {
-  }
-  ngOnChanges(changes: SimpleChanges): void {
-    this.userDService.userData.subscribe(tableValues => this.tableValues = tableValues)
+    this.tableValues = JSON.parse(localStorage.getItem('userInfo'));
   }
 
   ngOnInit(){
-    this.subscription = this.userDService.userData.subscribe(tableValues => this.tableValues = tableValues)
-    console.log(this.tableValues);
+    this.userDService.userData.subscribe(tableValues => tableValues[0]?(this.tableValues.push(tableValues[0])):this.tableValues);
   }
 }

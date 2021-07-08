@@ -42,9 +42,7 @@ export class UserFormComponent {
   submit(login: any) {
     if(this.active_error === false)
     {
-
       this.userDService.addUserInfo(login.value);
-      //this.userInfo.
       this.resetForm(login);
     }
   }
