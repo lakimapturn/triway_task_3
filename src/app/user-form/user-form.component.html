@@ -202,7 +202,7 @@
                     </div>
                 </div>
                 <div>
-                    <input ngModel name = "phone_number" #phone_number = "ngModel" required minlength="7" maxlength="15" id = "phone_number" type = "text" class = "input_fields"  (change) = "onChange(username, login)">
+                    <input ngModel name = "phone_number" #phone_number = "ngModel" required minlength="7" maxlength="15" id = "phone_number" type = "number" class = "input_fields"  (change) = "onChange(username, login)">
                 </div>
             </div>
             </div>
@@ -256,9 +256,10 @@
             <div style="display: inline-flex;">
             <div class="input_field_divs">
                 <div class="input_field_heading">
-                <h6 class="asterisk_color">*</h6>
-                <h4>validPeriod</h4>
-                <h5 class = "warning_text" *ngIf = "valid_period.touched && valid_period.invalid">This is a required field!</h5>
+                    <h6 class="asterisk_color">*</h6>
+                    <h4>Valid Period</h4>
+                    <h5 class = "warning_text">{{valid_period_error}}</h5>
+                    <h5 class = "warning_text" *ngIf = "valid_period.touched && valid_period.invalid">This is a required field!</h5>
                 </div>
                 <div>
                 <input ngModel name = "valid_period" #valid_period = "ngModel" required id = "valid_period" type = "date" class = "input_fields"  (change) = "onChange(valid_period, login)">

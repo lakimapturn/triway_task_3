@@ -12,6 +12,7 @@ import { UserInfoTableComponent } from '../user-info-table/user-info-table.compo
 export class UserFormComponent {
   fullname_error: string = '';
   app_id_error: string = '';
+  valid_period_error: string = '';
   active_error: boolean = true;
   enteredValues: Object = {};
   user_form: FormGroup;
@@ -47,6 +48,19 @@ export class UserFormComponent {
     }
   }
 
+  checkDate(inputDate)
+  {
+    let today = new Date();
+    let current_dd = today.getDate();
+    let current_mm = today.getMonth() + 1;
+    let current_yyyy = today.getFullYear();
+    let enteredDate = new Date(inputDate);
+    let entered_dd = enteredDate.getDate();
+    let entered_mm = enteredDate.getMonth() + 1;
+    let entered_yyyy = enteredDate.getFullYear();
+    return (entered_yyyy >= current_yyyy && entered_mm >= current_mm && entered_dd >= current_dd)
+  }
+
   onChange(value: any, login: any) {
     //checking if the fullname input field has been changed and if its has passed basic validity
     if(value.name === "fullname") { 
@@ -76,11 +90,16 @@ export class UserFormComponent {
     }
     else if(value.name === "valid_period")
     {
-      if (value.viewModel) {}
+      if (this.checkDate(value.viewModel) === false) // this means that the valid period is before today
+      {
+        this.valid_period_error = "Please Enter a Valid Period!"
+      }
+      else 
+        this.valid_period_error = "";
     }
     if(login.invalid == true)
       this.active_error = true;
-    else if (this.fullname_error != '' && this.app_id_error != '')
+    else if (this.fullname_error != "" && this.app_id_error != "" && this.valid_period_error != "")
       this.active_error = true;
     else this.active_error = false;
   }
