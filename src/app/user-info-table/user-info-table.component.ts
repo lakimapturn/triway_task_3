@@ -10,10 +10,10 @@ export class UserInfoTableComponent implements OnInit {
   tableValues: UserInfo[];
 
   constructor(private userDService: UserDataService) {
-    this.tableValues = JSON.parse(localStorage.getItem('userInfo'));
+    this.tableValues = localStorage.getItem('userInfo')?JSON.parse(localStorage.getItem('userInfo')):[];
   }
 
   ngOnInit(){
-    this.userDService.userData.subscribe(tableValues => tableValues[0]?(this.tableValues.push(tableValues[0])):this.tableValues);
+    this.userDService.userData.subscribe(tableValues => tableValues[0]?(this.tableValues.push(tableValues[tableValues.length-1])):this.tableValues);
   }
 }

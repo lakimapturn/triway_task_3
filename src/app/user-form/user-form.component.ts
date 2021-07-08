@@ -74,6 +74,10 @@ export class UserFormComponent {
           this.app_id_error = '';
       }
     }
+    else if(value.name === "valid_period")
+    {
+      if (value.viewModel) {}
+    }
     if(login.invalid == true)
       this.active_error = true;
     else if (this.fullname_error != '' && this.app_id_error != '')

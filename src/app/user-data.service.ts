@@ -12,7 +12,7 @@ export class UserDataService {
   
   
   constructor() {
-    this.arr = JSON.parse(localStorage.getItem('userInfo'));
+    this.arr = localStorage.getItem('userInfo')? JSON.parse(localStorage.getItem('userInfo')): [];
   }
 
   getAllUserInfo() {
