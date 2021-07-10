@@ -44,6 +44,7 @@ export class UserFormComponent {
     if(this.active_error === false)
     {
       this.userDService.addUserInfo(login.value);
+      this.active_error = true;
       this.resetForm(login);
     }
   }

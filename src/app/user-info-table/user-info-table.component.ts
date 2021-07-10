@@ -16,4 +16,21 @@ export class UserInfoTableComponent implements OnInit {
   ngOnInit(){
     this.userDService.userData.subscribe(tableValues => tableValues[0]?(this.tableValues.push(tableValues[tableValues.length-1])):this.tableValues);
   }
+
+  edit(value)
+  {
+    console.log(value)
+    //localStorage.setItem('userInfo', JSON.stringify(this.tableValues)); // updating localStorage
+  }
+
+  delete(value)
+  {
+    if(this.tableValues.indexOf(value) == 0)
+     this.tableValues.shift();
+    else if (this.tableValues.indexOf(value) == this.tableValues.length - 1)
+     this.tableValues.pop()
+    else
+    this.tableValues.splice(this.tableValues.indexOf(value), this.tableValues.indexOf(value));
+    //localStorage.setItem('userInfo', JSON.stringify(this.tableValues)); // updating localStorage
+  }
 }
