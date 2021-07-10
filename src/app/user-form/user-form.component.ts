@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { UserDataService } from '../user-data.service';
 import { UserInfoTableComponent } from '../user-info-table/user-info-table.component';
 
@@ -9,13 +9,25 @@ import { UserInfoTableComponent } from '../user-info-table/user-info-table.compo
   styleUrls: ['./user-form.component.css'],
 })
 
-export class UserFormComponent {
+export class UserFormComponent implements OnInit {
   fullname_error: string = '';
   app_id_error: string = '';
   valid_period_error: string = '';
   active_error: boolean = true;
   enteredValues: Object = {};
   user_form: FormGroup;
+  // @ViewChild('fullname') fullname;
+  // @ViewChild('password') password;
+  // @ViewChild('username') username;
+  // @ViewChild('phone_number') phone_number;
+  // @ViewChild('email') email;
+  // @ViewChild('address') address;
+  // @ViewChild('contacts') contacts;
+  // @ViewChild('valid_period') valid_period;
+  // @ViewChild('app_id') app_id;
+  // @ViewChild('capacity') capacity;
+  // @ViewChild('postscript') postscript;
+
 
   constructor(private formBuilder: FormBuilder, private userDService: UserDataService) {
     this.user_form = this.formBuilder.group({
@@ -29,10 +41,15 @@ export class UserFormComponent {
       contacts: [''],
       valid_period: ['', Validators.required],
       app_id: ['', Validators.required],
-      capacity: [0, Validators.required],
+      capacity: ['', Validators.required],
       postscript: [''],
       authorization: [false],
     })
+  }
+
+  ngOnInit() {
+    this.userDService.formValues.subscribe(editFormValues => {this.stageEdit(editFormValues)});
+    this.userDService.formValues.subscribe(editFormValues => {this.edit(editFormValues)});
   }
 
   resetForm(login: any)
@@ -40,7 +57,7 @@ export class UserFormComponent {
     login.resetForm()
   }
 
-  submit(login: any) {
+  onSubmit(login: any) {
     if(this.active_error === false)
     {
       this.userDService.addUserInfo(login.value);
@@ -60,6 +77,10 @@ export class UserFormComponent {
     let entered_mm = enteredDate.getMonth() + 1;
     let entered_yyyy = enteredDate.getFullYear();
     return (entered_yyyy >= current_yyyy && entered_mm >= current_mm && entered_dd >= current_dd)
+  }
+
+  change(value: any) {
+    this.user_form
   }
 
   onChange(value: any, login: any) {
@@ -103,5 +124,56 @@ export class UserFormComponent {
     else if (this.fullname_error != "" && this.app_id_error != "" && this.valid_period_error != "")
       this.active_error = true;
     else this.active_error = false;
+  }
+
+  stageEdit(formValue)
+  {
+    //console.log(this.fullname)
+    document.forms['user_form'].elements['username'].value = formValue.username;
+    document.forms['user_form'].elements['password'].value = formValue.password;
+    document.forms['user_form'].elements['phone_number'].value = formValue.phone_number;
+    document.forms['user_form'].elements['email'].value = formValue.email;
+    document.forms['user_form'].elements['address'].value = formValue.address ;
+    document.forms['user_form'].elements['contacts'].value = formValue.contacts ;
+    document.forms['user_form'].elements['valid_period'].value = formValue.valid_period ;
+    document.forms['user_form'].elements['app_id'].value = formValue.app_id ;
+    document.forms['user_form'].elements['capacity'].value = formValue.capacity ;
+    document.forms['user_form'].elements['postscript'].value = formValue.postscript ;
+  }
+
+  edit(formValues)
+  {
+    console.log(formValues)
+    this.user_form.setValue({
+      fullname: formValues.fullname?formValues.fullname:'',
+      username: formValues.username?formValues.username:'',
+      password: formValues.password?formValues.password:'',
+      phone_number: formValues.phone_number?formValues.phone_number:'',
+      send_email: formValues.send_email?formValues.send_email:false,
+      email: formValues.email?formValues.email:'',
+      address: formValues.address?formValues.address:'',
+      contacts: formValues.contacts?formValues.address:'',
+      valid_period: formValues.valid_period?formValues.valid_period: '',
+      app_id: formValues.app_id?formValues.app_id: '',
+      capacity: formValues.capacity?formValues.capacity: '',
+      postscript: formValues.postscript?formValues.postscript:'',
+      authorization: formValues.background?formValues.background:false,
+    });
+  }
+
+  cancel()
+  {
+    this.user_form.reset();
+  }
+
+  submit()
+  {
+    if(this.user_form.valid)
+    {
+      this.userDService.addUserInfo(this.user_form.value);
+      this.active_error = true;
+      console.log(this.user_form);
+      this.user_form.reset();
+    }
   }
 }

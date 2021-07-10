@@ -9,7 +9,9 @@ export class UserDataService {
   private userDataSource = new BehaviorSubject<UserInfo[]>([]);
   userData = this.userDataSource.asObservable();
   arr: Array<UserInfo> = [];
-  
+
+  private editFormValues = new BehaviorSubject<Object>([]);
+  formValues = this.editFormValues.asObservable();
   
   constructor() {
     this.arr = localStorage.getItem('userInfo')? JSON.parse(localStorage.getItem('userInfo')): [];
@@ -27,6 +29,11 @@ export class UserDataService {
     this.arr.push(info)
     this.userDataSource.next(this.arr);
     localStorage.setItem("userInfo", JSON.stringify(this.arr))
+  }
+
+  stageEdit(formValue)
+  {
+    this.editFormValues.next(formValue);
   }
 }
 

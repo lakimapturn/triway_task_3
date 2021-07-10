@@ -1,152 +1,148 @@
-<!---
-<form [formGroup]="user_form" >
-<div>
-    <div style="display: inline-flex;">
-        <div class="input_field_divs">
-            <div class="input_field_heading">
-                <h6 class="asterisk_color">*</h6>
-                <h4>Full Name</h4>
-            </div>
-            <div>
-                <input formControlName = "fullname" required minlength="2" maxlength="30" id = "full_name" type = "text" class = "input_fields" (change) = "onChange(fullname)">
-            </div>
-        </div>
-        <div class="input_field_divs">
-            <div class="input_field_heading">
-                <h6 class="asterisk_color">*</h6>
-                <h4>Username</h4>
-            </div>
-            <div>
-                <input formControlName = "username" required minlength="4" maxlength="30" id = "username" type = "text" class = "input_fields" (change) = "log(username)">
-            </div>
-        </div>
-        </div>
-    </div>
+<form [formGroup]="user_form" name = "user_form" (ngSubmit) = "submit()">
     <div>
         <div style="display: inline-flex;">
-        <div class="input_field_divs">
-            <div class="input_field_heading">
-            <h6 class="asterisk_color">*</h6>
-            <h4>Password</h4>
+            <div class="input_field_divs">
+                <div class="input_field_heading">
+                    <h6 class="asterisk_color">*</h6>
+                    <h4>Full Name</h4>
+                </div>
+                <div>
+                    <input formControlName = "fullname" required minlength="2" maxlength="30" id = "full_name" type = "text" class = "input_fields" (change) = "change('fullname')">
+                </div>
             </div>
-            <div>
-                <input formControlName = "password" required minlength="6" maxlength="30" id = "password" type = "password" class = "input_fields">
+            <div class="input_field_divs">
+                <div class="input_field_heading">
+                    <h6 class="asterisk_color">*</h6>
+                    <h4>Username</h4>
+                </div>
+                <div>
+                    <input formControlName = "username" required minlength="4" maxlength="30" id = "username" type = "text" class = "input_fields" (change) = "change('username')">
+                </div>
+            </div>
             </div>
         </div>
-        <div class="input_field_divs">
-            <div class="input_field_heading">
+        <div>
+            <div style="display: inline-flex;">
+            <div class="input_field_divs">
+                <div class="input_field_heading">
                 <h6 class="asterisk_color">*</h6>
-                <h4>Phone Number</h4>
+                <h4>Password</h4>
+                </div>
+                <div>
+                    <input formControlName = "password" required minlength="6" maxlength="30" id = "password" type = "password" class = "input_fields">
+                </div>
             </div>
-            <div>
-                <input formControlName = "phone_number" required minlength="7" maxlength="15" id = "phone_number" type = "text" class = "input_fields">
+            <div class="input_field_divs">
+                <div class="input_field_heading">
+                    <h6 class="asterisk_color">*</h6>
+                    <h4>Phone Number</h4>
+                </div>
+                <div>
+                    <input formControlName = "phone_number" required minlength="7" maxlength="15" id = "phone_number" type = "number" class = "input_fields">
+                </div>
+            </div>
             </div>
         </div>
+        <div>
+            <div style="display: inline-flex;">
+            <div class="input_field_divs">
+                <div class="input_field_heading">
+                <h4>Send Email</h4>
+                </div>
+                <div style="padding-right: 374px; margin-top: 7px">
+                <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+                </label>
+                </div>
+            </div>
+            <div class="input_field_divs">
+                <div class="input_field_heading">
+                <h6 class="asterisk_color">*</h6>
+                <h4>Email</h4>
+                </div>
+                <div>
+                <input formControlName = "email" required minlength = "7" maxlength = "32" id = "email" type = "email" class = "input_fields">
+                </div>
+            </div>
+            </div>
         </div>
-    </div>
+        <div>
+            <div style="display: inline-flex;">
+            <div class="input_field_divs">
+                <div class="input_field_heading">
+                <h4>Address</h4>
+                </div>
+                <div>
+                <input formControlName = "address" id = "address" type = "text" class = "input_fields">
+                </div>
+            </div>
+            <div class="input_field_divs">
+                <div class="input_field_heading">
+                <h4>Contacts</h4>
+                </div>
+                <div>
+                <input formControlName = "contacts" id = "contacts" type = "number" class = "input_fields">
+                </div>
+            </div>
+            </div>
+        </div>
+        <div>
+            <div style="display: inline-flex;">
+            <div class="input_field_divs">
+                <div class="input_field_heading">
+                <h6 class="asterisk_color">*</h6>
+                <h4>Valid Period</h4>
+                </div>
+                <div>
+                <input formControlName = "valid_period" required id = "valid_period" type = "date" class = "input_fields">
+                </div>
+            </div>
+            <div class="input_field_divs">
+                <div class="input_field_heading">
+                <h6 class="asterisk_color">*</h6>
+                <h4>AppId</h4>
+                </div>
+                <div>
+                <input formControlName = "app_id" required minlength="2" maxlength="30" id = "app_id" type = "text" class = "input_fields" (change) = "change('app_id')">
+                </div>
+            </div>
+            </div>
+        </div>
+        <div>
+            <div style="display: inline-flex;">
+            <div class="input_field_divs">
+                <div class="input_field_heading">
+                <h6 class="asterisk_color">*</h6>
+                <h4>Capacity(M)</h4>
+                </div>
+                <div>
+                    <input formControlName = "capacity" required minlength="1" maxlength="4" id = "capacity" type = "number" class = "input_fields">
+                </div>
+            </div>
+            <div class="input_field_divs">
+                <div class="input_field_heading">
+                <h4>Postscript</h4>
+                </div>
+                <div>
+                <input formControlName = "postscript" id = "postscript" type = "text" class = "input_fields">
+                </div>
+                </div>
+            </div>
+            </div>
     <div>
-        <div style="display: inline-flex;">
-        <div class="input_field_divs">
-            <div class="input_field_heading">
-            <h4>Send Email</h4>
-            </div>
-            <div style="padding-right: 374px; margin-top: 7px">
-            <label class="switch">
+        <h5 style="height: 25px; margin: 15px 0px 7px 0px">Whether to authorize the background</h5>
+        <label class="switch">
             <input type="checkbox">
             <span class="slider round"></span>
-            </label>
-            </div>
+        </label>
+        <div id="bottom">
+            <button (click)="cancel()" id = "cancel">Cancel</button>
+            <input [disabled] ="user_form.invalid"  type = "submit" id = "confirm" placeholder="Confirm"/>
         </div>
-        <div class="input_field_divs">
-            <div class="input_field_heading">
-            <h6 class="asterisk_color">*</h6>
-            <h4>Email</h4>
-            </div>
-            <div>
-            <input formControlName = "email" #email = "ngModel" required minlength = "7" maxlength = "32" id = "email" type = "email" class = "input_fields">
-            </div>
-        </div>
-        </div>
-    </div>
-    <div>
-        <div style="display: inline-flex;">
-        <div class="input_field_divs">
-            <div class="input_field_heading">
-            <h4>Address</h4>
-            </div>
-            <div>
-            <input formControlName = "address" id = "address" type = "text" class = "input_fields">
-            </div>
-        </div>
-        <div class="input_field_divs">
-            <div class="input_field_heading">
-            <h4>Contacts</h4>
-            </div>
-            <div>
-            <input formControlName = "contact" id = "contact" type = "text" class = "input_fields">
-            </div>
-        </div>
-        </div>
-    </div>
-    <div>
-        <div style="display: inline-flex;">
-        <div class="input_field_divs">
-            <div class="input_field_heading">
-            <h6 class="asterisk_color">*</h6>
-            <h4>validPeriod</h4>
-            </div>
-            <div>
-            <input formControlName = "valid_period" required id = "valid_period" type = "date" class = "input_fields">
-            </div>
-        </div>
-        <div class="input_field_divs">
-            <div class="input_field_heading">
-            <h6 class="asterisk_color">*</h6>
-            <h4>AppId</h4>
-            </div>
-            <div>
-            <input formControlName = "app_id" required minlength="2" maxlength="30" id = "app_id" type = "text" class = "input_fields" (change) = "onChange(app_id)">
-            </div>
-        </div>
-        </div>
-    </div>
-    <div>
-        <div style="display: inline-flex;">
-        <div class="input_field_divs">
-            <div class="input_field_heading">
-            <h6 class="asterisk_color">*</h6>
-            <h4>Capacity(M)</h4>
-            </div>
-            <div>
-                <input formControlName = "capacity" required minlength="1" maxlength="4" id = "capacity" type = "number" class = "input_fields">
-            </div>
-        </div>
-        <div class="input_field_divs">
-            <div class="input_field_heading">
-            <h4>Postscript</h4>
-            </div>
-            <div>
-            <input formControlName = "postscript" id = "postscript" type = "text" class = "input_fields">
-            </div>
-            </div>
-        </div>
-        </div>
-    </div>
-<div>
-    <h5 style="height: 25px; margin: 15px 0px 7px 0px">Whether to authorize the background</h5>
-    <label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
-    </label>
-    <div id="bottom">
-        <button id = "cancel">Cancel</button>
-        <input disabled =""  type = "submit" id = "confirm" placeholder="Confirm"/>
-    </div>
-</div>
-</form>
---->
 
-<form #login = "ngForm" (ngSubmit) = "submit(login)">
+<!---
+<form #login = "ngForm" (ngSubmit) = "onSubmit(login)" name = "user_form">
     <div>
         <div style="display: inline-flex;">
             <div class="input_field_divs">
@@ -160,7 +156,7 @@
                     <h5 class = "warning_text">{{fullname_error}}</h5>
                 </div>
                 <div>
-                    <input ngModel #fullname = "ngModel" name = "fullname" required minlength="2" maxlength="30" id = "full_name" type = "text" class = "input_fields" (change) = "onChange(fullname, login)">
+                    <input ngModel #fullname = "ngModel" name = "fullname" required minlength="4" maxlength="30" id = "full_name" type = "text" class = "input_fields" (change) = "onChange(fullname, login)">
                 </div>
             </div>
             <div class="input_field_divs">
@@ -313,3 +309,4 @@
             </div>
         </div>
 </form>
+-->

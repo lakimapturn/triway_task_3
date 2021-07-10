@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDataService, UserInfo } from '../user-data.service';
+import { UserFormComponent } from '../user-form/user-form.component';
 
 @Component({
   selector: 'app-user-info-table',
@@ -20,6 +21,7 @@ export class UserInfoTableComponent implements OnInit {
   edit(value)
   {
     console.log(value)
+    this.userDService.stageEdit(value);
     //localStorage.setItem('userInfo', JSON.stringify(this.tableValues)); // updating localStorage
   }
 
