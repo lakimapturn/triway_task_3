@@ -16,18 +16,6 @@ export class UserFormComponent implements OnInit {
   active_error: boolean = true;
   enteredValues: Object = {};
   user_form: FormGroup;
-  // @ViewChild('fullname') fullname;
-  // @ViewChild('password') password;
-  // @ViewChild('username') username;
-  // @ViewChild('phone_number') phone_number;
-  // @ViewChild('email') email;
-  // @ViewChild('address') address;
-  // @ViewChild('contacts') contacts;
-  // @ViewChild('valid_period') valid_period;
-  // @ViewChild('app_id') app_id;
-  // @ViewChild('capacity') capacity;
-  // @ViewChild('postscript') postscript;
-
 
   constructor(private formBuilder: FormBuilder, private userDService: UserDataService) {
     this.user_form = this.formBuilder.group({
@@ -48,24 +36,9 @@ export class UserFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userDService.formValues.subscribe(editFormValues => {this.stageEdit(editFormValues)});
     this.userDService.formValues.subscribe(editFormValues => {this.edit(editFormValues)});
   }
-
-  resetForm(login: any)
-  {
-    login.resetForm()
-  }
-
-  onSubmit(login: any) {
-    if(this.active_error === false)
-    {
-      this.userDService.addUserInfo(login.value);
-      this.active_error = true;
-      this.resetForm(login);
-    }
-  }
-
+  
   checkDate(inputDate)
   {
     let today = new Date();
@@ -81,64 +54,6 @@ export class UserFormComponent implements OnInit {
 
   change(value: any) {
     this.user_form
-  }
-
-  onChange(value: any, login: any) {
-    //checking if the fullname input field has been changed and if its has passed basic validity
-    if(value.name === "fullname") { 
-      if(value.valid){
-        for(let i = 0; i<value.viewModel.length; i++)
-        {
-          if((/[a-zA-Z]/).test(value.viewModel.charAt(i)) == false && value.viewModel.charAt(i) != ' ')
-          {
-            this.fullname_error = "Full name must have only characters"
-          } 
-          else this.fullname_error = '';
-        }
-      }
-      else this.fullname_error = '';
-    }
-    else if(value.name === "app_id") {
-      for(let i = 0; i<value.viewModel.length; i++)
-      {
-        if((/[a-zA-Z0-9]/).test(value.viewModel.charAt(i)) == false)
-        {
-          this.app_id_error = "App ID can only have numbers or characters";
-          return
-        }
-        else
-          this.app_id_error = '';
-      }
-    }
-    else if(value.name === "valid_period")
-    {
-      if (this.checkDate(value.viewModel) === false) // this means that the valid period is before today
-      {
-        this.valid_period_error = "Please Enter a Valid Period!"
-      }
-      else 
-        this.valid_period_error = "";
-    }
-    if(login.invalid == true)
-      this.active_error = true;
-    else if (this.fullname_error != "" && this.app_id_error != "" && this.valid_period_error != "")
-      this.active_error = true;
-    else this.active_error = false;
-  }
-
-  stageEdit(formValue)
-  {
-    //console.log(this.fullname)
-    document.forms['user_form'].elements['username'].value = formValue.username;
-    document.forms['user_form'].elements['password'].value = formValue.password;
-    document.forms['user_form'].elements['phone_number'].value = formValue.phone_number;
-    document.forms['user_form'].elements['email'].value = formValue.email;
-    document.forms['user_form'].elements['address'].value = formValue.address ;
-    document.forms['user_form'].elements['contacts'].value = formValue.contacts ;
-    document.forms['user_form'].elements['valid_period'].value = formValue.valid_period ;
-    document.forms['user_form'].elements['app_id'].value = formValue.app_id ;
-    document.forms['user_form'].elements['capacity'].value = formValue.capacity ;
-    document.forms['user_form'].elements['postscript'].value = formValue.postscript ;
   }
 
   edit(formValues)
